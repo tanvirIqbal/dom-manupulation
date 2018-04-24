@@ -9,24 +9,27 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 
 scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
 
-/*
-Math.random() generates a random value
-*/
-dice = Math.floor(Math.random() * ((6-1)+1)) + 1;
-
-// Writing on the DOM element
-// document.querySelector('#current-' + activePlayer).textContent = dice;
-document.querySelector('#current-' + activePlayer).innerHTML = '<em>'+dice+'</em>';
-
-// Reading from the DOM
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
-
-//Styling the DOM element
 document.querySelector('.dice').style.display = 'none';
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+
+document.querySelector('.btn-roll').addEventListener('click', function(){
+    // Random Number
+    var dice = generateRandomNumber();
+    // Display the result
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block';
+    diceDOM.src = 'dice-' + dice + '.png';
+});
+
+function generateRandomNumber() {
+    return Math.floor(Math.random() * ((6-1)+1)) + 1;
+}
