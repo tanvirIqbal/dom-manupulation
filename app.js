@@ -28,6 +28,20 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     var diceDOM = document.querySelector('.dice');
     diceDOM.style.display = 'block';
     diceDOM.src = 'dice-' + dice + '.png';
+    // Update the round score IF the rolled numner was NOT a 1
+    if (dice !== 1) {
+        roundScore += dice;
+        document.querySelector('#current-'+activePlayer).textContent = roundScore;
+    } else {
+        // Next Player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScore = 0;
+
+        document.getElementById('current-0').textContent = '0';
+        document.getElementById('current-1').textContent = '0';
+        document.querySelector('.dice').style.display = 'block';
+
+    }
 });
 
 function generateRandomNumber() {
