@@ -11,7 +11,6 @@ GAME RULES:
 
 var scores, roundScore, activePlayer, gamePlaying, previousDice;
 init();
-
 document.querySelector('.btn-roll').addEventListener('click', function(){
     if(gamePlaying) {
         // Random Number
@@ -46,7 +45,9 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
         document.querySelector('#score-'+ activePlayer).textContent = scores[activePlayer];
 
         // Check if player won the game
-        if (scores[activePlayer] >= 20) {
+        var input = document.querySelector('.final-score').value;
+        var winningValue = input ? input : 0;
+        if (scores[activePlayer] >= winningValue) {
             document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
